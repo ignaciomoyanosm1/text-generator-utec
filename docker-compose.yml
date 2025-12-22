@@ -1,0 +1,15 @@
+services:
+  iugo-postgres:
+    image: postgres:16
+    container_name: iugo-postgres
+    environment:
+      POSTGRES_DB: iugo
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin123
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
