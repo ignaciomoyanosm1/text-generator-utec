@@ -18,41 +18,42 @@ import com.iugo.demo.security.JwtAuthFilter;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-   private final JwtAuthFilter jwtAuthFilter;
+    private final JwtAuthFilter jwtAuthFilter;
 
-   public SecurityConfig(JwtAuthFilter jwtAuthFilter) {
-      this.jwtAuthFilter = jwtAuthFilter;
-   }
+    public SecurityConfig(JwtAuthFilter jwtAuthFilter) {
+        this.jwtAuthFilter = jwtAuthFilter;
+    }
 
-   @Bean
-   PasswordEncoder passwordEncoder() {
-      return new BCryptPasswordEncoder();
-   }
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-   @Bean
-   SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-      http
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> auth
-                  .requestMatchers(
-                        "/swagger-ui.html",
-                        "/swagger-ui/**",
-                        "/v3/api-docs/**",
-                        "/v3/api-docs.yaml",
-                        "/auth/**"   // login / register
-                  ).permitAll()
-                  .anyRequest().authenticated()
-            )
-            .sessionManagement(session ->
-                  session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            );
+    @Bean
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(
+                                "/swagger-ui.html",
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**",
+                                "/v3/api-docs.yaml",
+                                "/auth/**"
+                        ).permitAll()
+                        .anyRequest().authenticated()
+                )
+                .sessionManagement(session ->
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
 
-      return http.build();
-   }
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
-   @Bean
-   AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-      return config.getAuthenticationManager();
-   }
+        return http.build();
+    }
+    @Bean
+    AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
+    }
 
 }
