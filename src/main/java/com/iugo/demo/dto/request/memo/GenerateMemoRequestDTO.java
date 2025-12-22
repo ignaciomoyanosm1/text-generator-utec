@@ -12,15 +12,16 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GenerateMemoRequestDTO {
-    @NotNull
+
+    @NotNull(message = "El contexto es obligatorio")
     @Valid
     private ContextDTO context;
 
-    @NotEmpty
+    @NotEmpty(message = "Debe incluir al menos una oferta")
     @Valid
     private List<OfferDTO> offers;
 
-    @NotNull
+    @NotNull(message = "La recomendación es obligatoria")
     @Valid
     private RecommendationDTO recommendation;
 }

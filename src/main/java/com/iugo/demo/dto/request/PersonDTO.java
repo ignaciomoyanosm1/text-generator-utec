@@ -6,9 +6,9 @@ import lombok.*;
 @AllArgsConstructor
 public class PersonDTO {
 
-    @NotBlank
+    @NotBlank(message = "El nombre no debe estar vacío")
     private String name;
 
-    @NotBlank
+    @NotBlank(message = "El cargo no debe estar vacío")
     private String position;
 }

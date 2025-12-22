@@ -9,17 +9,16 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RecommendationDTO {
-
-    @NotBlank
+    @NotBlank(message = "El proveedor recomendado no debe estar vacío")
     private String supplier;
 
-    @NotBlank
+    @NotBlank(message = "El equipo recomendado no debe estar vacío")
     private String equipment;
 
-    @NotNull
-    @DecimalMin(value = "0.0", inclusive = false)
+    @NotNull(message = "El precio recomendado es obligatorio")
+    @DecimalMin(value = "0.0", inclusive = false, message = "El precio recomendado debe ser mayor a 0")
     private BigDecimal price;
 
-    @NotBlank
+    @NotBlank(message = "La moneda de la recomendación no debe estar vacía")
     private String currency;
 }

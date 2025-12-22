@@ -9,11 +9,11 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GenerateEmailProviderRequestDTO {
-    @NotNull
+    @NotNull(message = "El contexto es obligatorio")
     @Valid
     private ContextDTO context;
 
-    @NotNull
+    @NotNull(message = "Los datos del proveedor son obligatorios")
     @Valid
     private EmailProviderDTO emailProvider;
 }

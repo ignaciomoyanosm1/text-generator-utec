@@ -10,16 +10,16 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class OfferDTO {
 
-    @NotBlank
+    @NotBlank(message = "El proveedor no debe estar vacío")
     private String supplier;
 
-    @NotBlank
+    @NotBlank(message = "La modalidad no debe estar vacía")
     private String modality;
 
-    @NotNull
-    @DecimalMin(value = "0.0", inclusive = false)
+    @NotNull(message = "El precio unitario es obligatorio")
+    @DecimalMin(value = "0.0", inclusive = false, message = "El precio unitario debe ser mayor a 0")
     private BigDecimal unitPrice;
 
-    @NotBlank
+    @NotBlank(message = "La moneda no debe estar vacía")
     private String currency;
 }
