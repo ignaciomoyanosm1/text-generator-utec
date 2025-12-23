@@ -17,7 +17,7 @@ import com.iugo.demo.service.ContentGeneratorService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/content")
+@RequestMapping("/api/v1")
 public class ContentGeneratorController {
 
    private final ContentGeneratorService service;
