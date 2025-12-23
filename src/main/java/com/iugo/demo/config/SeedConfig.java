@@ -3,6 +3,7 @@ package com.iugo.demo.config;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.iugo.demo.user.entity.Role;
@@ -11,6 +12,7 @@ import com.iugo.demo.user.repository.UserRepository;
 import com.iugo.demo.user.repository.RoleRepository;
 
 @Configuration
+@Profile({"dev","local"})
 public class SeedConfig {
 
    @Bean
