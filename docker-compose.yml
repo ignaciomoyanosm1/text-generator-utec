@@ -6,6 +6,8 @@ services:
       POSTGRES_DB: iugo
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: admin123
+      TZ: UTC
+      PGTZ: UTC
     ports:
       - "5433:5432"
     volumes:
